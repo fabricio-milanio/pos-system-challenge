@@ -5,6 +5,21 @@ export default class Sale extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public clientId: number
+
+  @column()
+  public productId: number
+
+  @column()
+  public quantity: number
+
+  @column()
+  public price: number
+
+  @column()
+  public total_price: number
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
