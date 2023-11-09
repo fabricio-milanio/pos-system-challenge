@@ -19,7 +19,6 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+// import SignupController from 'App/Controllers/Http/SignupController'
 
-Route.get('/', async () => {
-  return { hello: 'world' }
-})
+Route.resource('/signup', 'SignupController').apiOnly()
