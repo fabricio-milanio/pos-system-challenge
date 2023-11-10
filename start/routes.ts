@@ -22,3 +22,4 @@ import Route from '@ioc:Adonis/Core/Route'
 // import SignupController from 'App/Controllers/Http/SignupController'
 
 Route.resource('/signup', 'SignupController').apiOnly()
+Route.post('/login', 'LoginController.login')
