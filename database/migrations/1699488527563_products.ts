@@ -12,6 +12,7 @@ export default class extends BaseSchema {
       table.string('publisher').notNullable()
       table.float('price').notNullable()
       table.integer('stock').notNullable()
+      table.boolean('deleted').defaultTo(false)
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })

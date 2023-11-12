@@ -30,6 +30,7 @@ export default class ProductValidator {
     publisher: schema.string(),
     price: schema.number([rules.unsigned(), rules.notIn([0])]),
     stock: schema.number([rules.unsigned(), rules.notIn([0])]),
+    deleted: schema.boolean.optional(),
   })
 
   /**

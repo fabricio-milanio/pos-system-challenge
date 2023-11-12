@@ -4,7 +4,7 @@ import ProductValidator from 'App/Validators/ProductValidator'
 
 export default class ProductsController {
   public async index({ response }: HttpContextContract) {
-    const data = await Product.all()
+    const data = await Product.query().where('deleted', false)
 
     const products = data.map((product) => {
       return {
@@ -23,7 +23,10 @@ export default class ProductsController {
 
   public async show({ params, response }: HttpContextContract) {
     try {
-      const product = await Product.findOrFail(params.id)
+      const product = await Product.query()
+        .where('id', params.id)
+        .andWhere('deleted', false)
+        .firstOrFail()
 
       return response.json(product)
     } catch (error) {
@@ -44,7 +47,15 @@ export default class ProductsController {
   public async update({ params, request, response }: HttpContextContract) {
     await request.validate(ProductValidator)
 
-    const data = request.only(['name', 'description', 'author', 'publisher', 'price', 'stock'])
+    const data = request.only([
+      'name',
+      'description',
+      'author',
+      'publisher',
+      'price',
+      'stock',
+      'deleted',
+    ])
 
     try {
       const product = await Product.findOrFail(params.id)
