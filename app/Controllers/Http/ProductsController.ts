@@ -19,4 +19,14 @@ export default class ProductsController {
 
     return response.json(products)
   }
+
+  public async show({ params, response }: HttpContextContract) {
+    try {
+      const product = await Product.findOrFail(params.id)
+
+      return response.json(product)
+    } catch (error) {
+      return response.status(404).json({ message: 'Product not found' })
+    }
+  }
 }
