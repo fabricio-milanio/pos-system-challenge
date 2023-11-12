@@ -5,4 +5,5 @@ Route.post('/login', 'LoginController.login')
 Route.group(() => {
   Route.get('/product', 'ProductsController.index')
   Route.get('/product/:id', 'ProductsController.show')
+  Route.post('/product', 'ProductsController.store')
 }).middleware('auth')
