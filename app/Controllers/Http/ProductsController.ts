@@ -40,4 +40,22 @@ export default class ProductsController {
 
     return response.status(201).json({ message: 'Product registered successfully', data: product })
   }
+
+  public async update({ params, request, response }: HttpContextContract) {
+    await request.validate(ProductValidator)
+
+    const data = request.only(['name', 'description', 'author', 'publisher', 'price', 'stock'])
+
+    try {
+      const product = await Product.findOrFail(params.id)
+
+      product.merge(data)
+
+      await product.save()
+
+      return response.json({ message: 'Product updated successfully', data: product })
+    } catch (error) {
+      return response.status(404).json({ message: 'Product not found' })
+    }
+  }
 }
