@@ -7,4 +7,5 @@ Route.group(() => {
   Route.get('/product/:id', 'ProductsController.show')
   Route.post('/product', 'ProductsController.store')
   Route.put('/product/:id', 'ProductsController.update')
+  Route.delete('/product/:id', 'ProductsController.destroy')
 }).middleware('auth')

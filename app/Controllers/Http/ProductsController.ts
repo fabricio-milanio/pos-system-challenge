@@ -69,4 +69,18 @@ export default class ProductsController {
       return response.status(404).json({ message: 'Product not found' })
     }
   }
+
+  public async destroy({ params, response }: HttpContextContract) {
+    try {
+      const product = await Product.findOrFail(params.id)
+
+      product.deleted = true
+
+      await product.save()
+
+      return response.json({ message: 'Product deleted successfully' })
+    } catch (error) {
+      return response.status(404).json({ message: 'Product not found' })
+    }
+  }
 }
