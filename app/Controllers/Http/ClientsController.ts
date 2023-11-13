@@ -57,4 +57,34 @@ export default class ClientsController {
 
     return response.status(201).json({ id, name, cpf })
   }
+
+  public async update({ request, response, params }: HttpContextContract) {
+    await request.validate(ClientValidator)
+
+    const data = request.only(['name', 'cpf'])
+
+    try {
+      const client = await Client.findOrFail(params.id)
+
+      client.merge(data)
+
+      const { id, name, cpf } = await client.save()
+
+      return response.json({ id, name, cpf })
+    } catch (error) {
+      return response.status(404).json({ message: 'Client not found' })
+    }
+  }
+
+  public async destroy({ response, params }: HttpContextContract) {
+    try {
+      const client = await Client.findOrFail(params.id)
+
+      await client.delete()
+
+      return response.status(204)
+    } catch (error) {
+      return response.status(404).json({ message: 'Client not found' })
+    }
+  }
 }

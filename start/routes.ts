@@ -16,4 +16,6 @@ Route.group(() => {
   Route.get('/client', 'ClientsController.index')
   Route.get('/client/:id', 'ClientsController.show')
   Route.post('/client', 'ClientsController.store')
+  Route.put('/client/:id', 'ClientsController.update')
+  Route.delete('/client/:id', 'ClientsController.destroy')
 }).middleware('auth')
