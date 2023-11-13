@@ -19,3 +19,7 @@ Route.group(() => {
   Route.put('/client/:id', 'ClientsController.update')
   Route.delete('/client/:id', 'ClientsController.destroy')
 }).middleware('auth')
+
+Route.group(() => {
+  Route.post('/sale', 'SalesController.store')
+}).middleware('auth')
