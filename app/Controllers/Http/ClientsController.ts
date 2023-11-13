@@ -1,6 +1,7 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 import Client from 'App/Models/Client'
+import ClientValidator from 'App/Validators/ClientValidator'
 
 export default class ClientsController {
   public async index({ response }: HttpContextContract) {
@@ -40,6 +41,20 @@ export default class ClientsController {
       }
     })
 
+    if (client.length === 0) {
+      return response.status(404).json({ message: 'Client not found' })
+    }
+
     return response.json(client)
+  }
+
+  public async store({ request, response }: HttpContextContract) {
+    await request.validate(ClientValidator)
+
+    const data = request.only(['name', 'cpf'])
+
+    const { id, name, cpf } = await Client.create(data)
+
+    return response.status(201).json({ id, name, cpf })
   }
 }

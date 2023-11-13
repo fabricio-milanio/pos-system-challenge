@@ -15,4 +15,5 @@ Route.group(() => {
 Route.group(() => {
   Route.get('/client', 'ClientsController.index')
   Route.get('/client/:id', 'ClientsController.show')
+  Route.post('/client', 'ClientsController.store')
 }).middleware('auth')
