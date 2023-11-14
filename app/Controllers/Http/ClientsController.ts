@@ -82,7 +82,7 @@ export default class ClientsController {
 
       await client.delete()
 
-      return response.status(204)
+      return response.status(204).json({ message: 'Client deleted successfully' })
     } catch (error) {
       return response.status(404).json({ message: 'Client not found' })
     }
