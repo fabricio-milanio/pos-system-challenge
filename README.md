@@ -83,12 +83,28 @@ O corpo da requisição deve conter email e password, conforme estrutura abaixo:
 }
 ```
 
+O retorno da requisição deverá ser similar a estrutura abaixo:
+
+```bash
+{
+	"message": "User account created"
+}
+```
+
 3. Após registrar o usuário, acesse o seguinte endpoint, utilizando POST, para realizar o login. Informe no corpo da requisição email e password válidos, conforme estrutura abaixo:
 
 ```bash
 {
 "email": "test@email.com",
 "password": "12345"
+}
+```
+
+O retorno da requisição deverá ser similar a estrutura abaixo:
+
+```bash
+{
+	"token": "MQ.LNQqmSzDFACkL14axs6TcdOCYJ8ujqGfXpITqtNPM4mY37rOq5kErQ4H57_2"
 }
 ```
 
@@ -165,6 +181,19 @@ O retorno da requisição deverá ser similar a estrutura abaixo:
 http://localhost:3333/product
 ```
 
+O corpo da requisição deve conter a seguinte estrutura:
+
+```bash
+{
+	"name": "Test",
+	"description": "Tet",
+	"author": "Test",
+	"publisher": "Test",
+	"price": 1,
+	"stock": 1
+}
+```
+
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
 ```bash
@@ -189,6 +218,22 @@ O retorno da requisição deverá ser similar a estrutura abaixo:
 ```bash
 http://localhost:3333/product
 ```
+
+O corpo da requisição deve conter a seguinte estrutura:
+
+```bash
+{
+	"name": "Elida 6",
+	"description": "Tet",
+	"author": "Test",
+	"publisher": "Test",
+	"price": "0.1",
+	"stock": 1,
+	"deleted": 0
+}
+```
+
+No caso do update, pode-se observar a key deleted, que é uma chave opcional, mas que define se um produto terá sua exclusão lógica do sistema. Ao atrituir zero significa que o produto continuará sendo listado no sistema, mas caso seja atribuido 1, o produto será excluído e não poderá mais ser visto no sistema. Para que o produto seja listado novamente, atribua 0 a key deleted.
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
@@ -296,6 +341,15 @@ O retorno da requisição deverá ser similar a estrutura abaixo:
 http://localhost:3333/client
 ```
 
+O corpo da requisição deve conter a seguinte estrutura:
+
+```bash
+{
+	"name": "Test",
+	"cpf": "12345678911"
+}
+```
+
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
 ```bash
@@ -310,6 +364,15 @@ O retorno da requisição deverá ser similar a estrutura abaixo:
 
 ```bash
 http://localhost:3333/client/1
+```
+
+O corpo da requisição deve conter a seguinte estrutura:
+
+```bash
+{
+	"name": "Test Update",
+	"cpf": "12345678916"
+}
 ```
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
@@ -336,13 +399,9 @@ O retorno da requisição deverá ser similar a estrutura abaixo:
 }
 ```
 
-Nesse endpoint vale ressaltar que a exclusão é lógica, ou seja, os dados do produto continuam registrado no banco de dados, mas não fica disponível para consulta no sistema, até que seja ativado novamente.
-
-<br>
+Nesse endpoint vale ressaltar que a exclusão é física, ou seja, os dados do cliente não serão persistidos no bando de dados, uma vez deletado, não será possível restaurar as informações.
 
 6. O usuário pode realizar o cadastro da venda de um produto a um cliente utilizando o endpoint abaixo.
-
-<br>
 
 6.1. Para registrar a venda, acesse o endpoint utilizando POST:
 
