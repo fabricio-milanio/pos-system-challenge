@@ -18,42 +18,52 @@ O Sistema de Ponto de Venda (PDV) é uma API RESTful construída com o framework
 
 ### Gestão de Produtos
 
-- **Criação de Produtos:** Operações CRUD (Criar, Ler, Atualizar, Excluir) para gerenciar produtos.
+Operações CRUD (Criar, Ler, Atualizar, Excluir) para gerenciar produtos.
+
 - **Listagem de Produtos:** Visualização de uma lista de todos os produtos disponíveis.
+- **Listagem de Produtos Por ID:** Visualização de um produto disponível.
+- **Cadastro de Produtos:** Novos produtos podem ser cadastrados e persistidos no banco de dados.
+- **Atualização de Produtos:** Produtos podem ser atualizados, como nome, preço, estoque, entre outras informações.
+- **Exclusão de Produtos:** Produtos são excluídos de forma lógica, mantendo seu registro no banco de dados, podendo ser novamente inseridos na aplicação.
 
 ### Gestão de Clientes
 
-- **Cadastro de Clientes:** Operações CRUD para gerenciar informações dos clientes.
-- **Listagem de Clientes:** Visualização de uma lista de todos os clientes registrados.
+Operações CRUD (Criar, Ler, Atualizar, Excluir) para gerenciar clientes.
+
+- **Listagem de Clientes:** Visualização de uma lista de todos os clientes cadastrados.
+- **Listagem de Clientes Por ID:** Visualização de um cliente cadastrado com todos os dados disponíveis.
+- **Cadastro de Clientes:** Novos clientes podem ser cadastrados e persistidos no banco de dados.
+- **Atualização de Clientes:** Clientes podem ser atualizados, como nome e cpf.
+- **Exclusão de Clientes:** Clientes são excluídos de forma física, eliminando de forma definitiva seu registro no banco de dados.
 
 ### Registro de Vendas
 
-- **Registro de Vendas:** Registra transações de vendas, incluindo detalhes do cliente, produto e quantidade.
+- **Registro de Vendas:** Registra transações de vendas, incluindo o cliente, produto, quantidade, preço unitário e valor total do pedido.
 - **Gestão de Estoque:** Atualiza automaticamente o estoque do produto após uma venda bem-sucedida.
 
-## Instalação
+## 🚀 Instalação
 
-1. Acesse o repositório:
+#### 1. Acesse o repositório:
 
-```bash
+```
 https://github.com/fabricio-milanio/pos-system-challenge
 ```
 
-2. Clone o projeto:
+#### 2. Clone o projeto:
 
-```bash
+```
 git clone git@github.com:fabricio-milanio/pos-system-challenge.git
 ```
 
-3. Utilizando o terminal, navegue até o diretório do projeto:
+#### 3. Utilizando o terminal, navegue até o diretório do projeto:
 
-```bash
+```
 cd path/pos-system-challenge
 ```
 
-4. Execute o comando para criar os containers e rodar a aplicação:
+#### 4. Execute o comando para criar os containers e rodar a aplicação:
 
-```bash
+```
 docker-compose up -d
 ```
 
@@ -64,19 +74,19 @@ Esse comando irá criar os seguintes containers:
 
 As migrations e seeders do banco de dados serão implementadas automaticamente.
 
-## Uso
+## ☕ Uso
 
-1. Inicie um client de sua preferência, como por exemplo o Insomnia;
+#### 1. Inicie um client de sua preferência, como por exemplo o Insomnia;
 
-2. Para cadastrar um usuário, acesse o seguinte endpoint utilizando POST:
+#### 2. Para cadastrar um usuário, acesse o seguinte endpoint utilizando POST:
 
-```bash
+```
 http://localhost:3333/signup
 ```
 
 O corpo da requisição deve conter email e password, conforme estrutura abaixo:
 
-```bash
+```
 {
 "email": "test@email.com",
 "password": "12345"
@@ -85,15 +95,21 @@ O corpo da requisição deve conter email e password, conforme estrutura abaixo:
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
 	"message": "User account created"
 }
 ```
 
-3. Após registrar o usuário, acesse o seguinte endpoint, utilizando POST, para realizar o login. Informe no corpo da requisição email e password válidos, conforme estrutura abaixo:
+#### 3. Após registrar o usuário, acesse o seguinte endpoint, utilizando POST, para realizar o login.
 
-```bash
+```
+http://localhost:3333/login
+```
+
+Informe no corpo da requisição email e password válidos, conforme estrutura abaixo:
+
+```
 {
 "email": "test@email.com",
 "password": "12345"
@@ -102,88 +118,88 @@ O retorno da requisição deverá ser similar a estrutura abaixo:
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
 	"token": "MQ.LNQqmSzDFACkL14axs6TcdOCYJ8ujqGfXpITqtNPM4mY37rOq5kErQ4H57_2"
 }
 ```
 
-4. Após se logar no sistema, o usuário pode realizar a gestão de produtos através do CRUD utilizando os endpoints abaixo.
+#### 4. Após se logar no sistema, o usuário pode realizar a gestão de produtos através do CRUD utilizando os endpoints abaixo.
 
 Obs.: A partir desse ponto, todas as rotas são protegidas e para garantir o acesso, o token obtido no momento do login deve ser informado no campo Auth - Bearer Token.
 
-4.1. Para acessar todos os produtos, acesse o endpoint utilizando GET:
+#### 4.1. Para acessar todos os produtos, acesse o endpoint utilizando GET:
 
-```bash
+```
 http://localhost:3333/product
 ```
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 [
-{
-"id": 1,
-"name": "Product 1",
-"description": "Description 1",
-"author": "Author 1",
-"publisher": "Publisher 1",
-"price": 1.99,
-"stock": 100
-},
-{
-"id": 2,
-"name": "Product 2",
-"description": "Description 2",
-"author": "Author 2",
-"publisher": "Publisher 2",
-"price": 2.99,
-"stock": 100
-},
-{
-"id": 3,
-"name": "Product 3",
-"description": "Description 3",
-"author": "Author 3",
-"publisher": "Publisher 3",
-"price": 3.99,
-"stock": 100
-}
+	{
+	"id": 1,
+	"name": "Product 1",
+	"description": "Description 1",
+	"author": "Author 1",
+	"publisher": "Publisher 1",
+	"price": 1.99,
+	"stock": 100
+	},
+	{
+	"id": 2,
+	"name": "Product 2",
+	"description": "Description 2",
+	"author": "Author 2",
+	"publisher": "Publisher 2",
+	"price": 2.99,
+	"stock": 100
+	},
+	{
+	"id": 3,
+	"name": "Product 3",
+	"description": "Description 3",
+	"author": "Author 3",
+	"publisher": "Publisher 3",
+	"price": 3.99,
+	"stock": 100
+	}
 ]
 ```
 
-4.2. Acesse um produto através do deu ID, acesse o endpoint utilizando GET:
+#### 4.2. Acesse um produto através do deu ID, acesse o endpoint utilizando GET:
 
-```bash
-http://localhost:3333/product/1
+```
+http://localhost:3333/product/id_do_produto
 ```
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
-"id": 1,
-"name": "Product 1",
-"description": "Description 1",
-"author": "Author 1",
-"publisher": "Publisher 1",
-"price": 1.99,
-"stock": 100,
-"deleted": 0,
-"created_at": "2023-11-13T23:21:38.000+00:00",
-"updated_at": "2023-11-13T23:21:38.000+00:00"
+	"id": 1,
+	"name": "Product 1",
+	"description": "Description 1",
+	"author": "Author 1",
+	"publisher": "Publisher 1",
+	"price": 1.99,
+	"stock": 100,
+	"deleted": 0,
+	"created_at": "2023-11-13T23:21:38.000+00:00",
+	"updated_at": "2023-11-13T23:21:38.000+00:00"
 }
 ```
 
-4.3. Para registrar um produto, acesse o endpoint utilizando POST:
+#### 4.3. Para registrar um produto, acesse o endpoint utilizando POST:
 
-```bash
+```
 http://localhost:3333/product
 ```
 
 O corpo da requisição deve conter a seguinte estrutura:
 
-```bash
+```
 {
 	"name": "Test",
 	"description": "Tet",
@@ -196,34 +212,34 @@ O corpo da requisição deve conter a seguinte estrutura:
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
-"message": "Product registered successfully",
-"data": {
-"name": "Test",
-"description": "Tet",
-"author": "Test",
-"publisher": "Test",
-"price": 1,
-"stock": 1,
-"created_at": "2023-11-13T23:23:32.346+00:00",
-"updated_at": "2023-11-13T23:23:32.346+00:00",
-"id": 4
-}
+	"message": "Product registered successfully",
+	"data": {
+		"name": "Test",
+		"description": "Tet",
+		"author": "Test",
+		"publisher": "Test",
+		"price": 1,
+		"stock": 1,
+		"created_at": "2023-11-13T23:23:32.346+00:00",
+		"updated_at": "2023-11-13T23:23:32.346+00:00",
+	"id": 4
+	}
 }
 ```
 
-4.4. Para atualizar um produto, acesse o endpoint utilizando PUT:
+#### 4.4. Para atualizar um produto, acesse o endpoint utilizando PUT:
 
-```bash
-http://localhost:3333/product
+```
+http://localhost:3333/product/id_do_produto
 ```
 
 O corpo da requisição deve conter a seguinte estrutura:
 
-```bash
+```
 {
-	"name": "Elida 6",
+	"name": "Test Utualizado",
 	"description": "Tet",
 	"author": "Test",
 	"publisher": "Test",
@@ -237,113 +253,113 @@ No caso do update, pode-se observar a key deleted, que é uma chave opcional, ma
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
-"message": "Product updated successfully",
-"data": {
-"id": 4,
-"name": "Elida 6",
-"description": "Tet",
-"author": "Test",
-"publisher": "Test",
-"price": "0.1",
-"stock": 1,
-"deleted": 0,
-"created_at": "2023-11-13T23:23:32.000+00:00",
-"updated_at": "2023-11-13T23:23:45.033+00:00"
-}
+	"message": "Product updated successfully",
+	"data": {
+		"id": 4,
+		"name": "Test Utualizado",
+		"description": "Tet",
+		"author": "Test",
+		"publisher": "Test",
+		"price": "0.1",
+		"stock": 1,
+		"deleted": 0,
+		"created_at": "2023-11-13T23:23:32.000+00:00",
+		"updated_at": "2023-11-13T23:23:45.033+00:00"
+	}
 }
 ```
 
-4.5. Para deletar um produto, acesse o endpoint utilizando DELETE:
+#### 4.5. Para deletar um produto, acesse o endpoint utilizando DELETE:
 
-```bash
+```
 http://localhost:3333/product
 ```
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
-"message": "Product deleted successfully"
+	"message": "Product deleted successfully"
 }
 ```
 
 Nesse endpoint vale ressaltar que a exclusão é lógica, ou seja, os dados do produto continuam registrado no banco de dados, mas não fica disponível para consulta no sistema, até que seja ativado novamente.
 
-5. O usuário pode realizar a gestão de clientes através do CRUD utilizando os endpoints abaixo.
+#### 5. O usuário pode realizar a gestão de clientes através do CRUD utilizando os endpoints abaixo.
 
-5.1. Para consultar todos os clientes, acesse o endpoint utilizando GET:
+#### 5.1. Para consultar todos os clientes, acesse o endpoint utilizando GET:
 
-```bash
+```
 http://localhost:3333/client
 ```
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 [
-{
-"id": 1,
-"name": "John Doe",
-"cpf": "12345678900"
-},
-{
-"id": 2,
-"name": "Jane Doe",
-"cpf": "12345678901"
-},
-{
-"id": 3,
-"name": "Johnny Doe",
-"cpf": "12345678902"
-}
+	{
+	"id": 1,
+	"name": "John Doe",
+	"cpf": "12345678900"
+	},
+	{
+	"id": 2,
+	"name": "Jane Doe",
+	"cpf": "12345678901"
+	},
+	{
+	"id": 3,
+	"name": "Johnny Doe",
+	"cpf": "12345678902"
+	}
 ]
 ```
 
-5.2. Acesse um cliente através do deu ID, acesse o endpoint utilizando GET:
+#### 5.2. Acesse um cliente através do deu ID, acesse o endpoint utilizando GET:
 
-```bash
-http://localhost:3333/client/1
+```
+http://localhost:3333/client/id_do_cliente
 ```
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 [
-{
-"id": 1,
-"name": "John Doe",
-"cpf": "12345678900",
-"addresses": [
-{
-"number": 123,
-"street": "Richmond Street",
-"district": "South Beach",
-"city": "Richmond",
-"state": "Virginia",
-"country": "United States",
-"zipCode": "12345-678"
-}
-],
-"phones": [
-{
-"number": 123456789
-}
-]
-}
+	{
+		"id": 1,
+		"name": "John Doe",
+		"cpf": "12345678900",
+		"addresses": [
+			{
+			"number": 123,
+			"street": "Richmond Street",
+			"district": "South Beach",
+			"city": "Richmond",
+			"state": "Virginia",
+			"country": "United States",
+			"zipCode": "12345-678"
+			}
+		],
+		"phones": [
+			{
+			"number": 123456789
+			}
+		]
+	}
 ]
 ```
 
-5.3. Para registrar um cliente, acesse o endpoint utilizando POST:
+#### 5.3. Para registrar um cliente, acesse o endpoint utilizando POST:
 
-```bash
+```
 http://localhost:3333/client
 ```
 
 O corpo da requisição deve conter a seguinte estrutura:
 
-```bash
+```
 {
 	"name": "Test",
 	"cpf": "12345678911"
@@ -352,23 +368,23 @@ O corpo da requisição deve conter a seguinte estrutura:
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
-"id": 5,
-"name": "Test",
-"cpf": "12345678911"
+	"id": 5,
+	"name": "Test",
+	"cpf": "12345678911"
 }
 ```
 
-5.4. Para atualizar um cliente pelo seu ID, acesse o endpoint utilizando PUT:
+#### 5.4. Para atualizar um cliente pelo seu ID, acesse o endpoint utilizando PUT:
 
-```bash
-http://localhost:3333/client/1
+```
+http://localhost:3333/client/id_do_cliente
 ```
 
 O corpo da requisição deve conter a seguinte estrutura:
 
-```bash
+```
 {
 	"name": "Test Update",
 	"cpf": "12345678916"
@@ -377,59 +393,59 @@ O corpo da requisição deve conter a seguinte estrutura:
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
-"id": 5,
-"name": "Test Update",
-"cpf": "12345678916"
+	"id": 5,
+	"name": "Test Update",
+	"cpf": "12345678916"
 }
 ```
 
-5.5. Para deletar um cliente, acesse o endpoint utilizando DELETE:
+#### 5.5. Para deletar um cliente, acesse o endpoint utilizando DELETE:
 
-```bash
-http://localhost:3333/product
+```
+http://localhost:3333/client
 ```
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
-"message": "Client deleted successfully"
+	"message": "Client deleted successfully"
 }
 ```
 
 Nesse endpoint vale ressaltar que a exclusão é física, ou seja, os dados do cliente não serão persistidos no bando de dados, uma vez deletado, não será possível restaurar as informações.
 
-6. O usuário pode realizar o cadastro da venda de um produto a um cliente utilizando o endpoint abaixo.
+#### 6. O usuário pode realizar o cadastro da venda de um produto a um cliente utilizando o endpoint abaixo.
 
-6.1. Para registrar a venda, acesse o endpoint utilizando POST:
+#### 6.1. Para registrar a venda, acesse o endpoint utilizando POST:
 
-```bash
+```
 http://localhost:3333/sale
 ```
 
 O corpo da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
-"client_id": 2,
-"product_id": 3,
-"quantity": 1
+	"client_id": 2,
+	"product_id": 3,
+	"quantity": 1
 }
 ```
 
 O retorno da requisição deverá ser similar a estrutura abaixo:
 
-```bash
+```
 {
-"client_id": 2,
-"product_id": 3,
-"quantity": 1,
-"price": 3.99,
-"total_price": 3.99,
-"created_at": "2023-11-13T23:25:07.224+00:00",
-"updated_at": "2023-11-13T23:25:07.224+00:00",
-"id": 4
+	"client_id": 2,
+	"product_id": 3,
+	"quantity": 1,
+	"price": 3.99,
+	"total_price": 3.99,
+	"created_at": "2023-11-13T23:25:07.224+00:00",
+	"updated_at": "2023-11-13T23:25:07.224+00:00",
+	"id": 4
 }
 ```
