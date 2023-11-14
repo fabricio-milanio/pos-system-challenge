@@ -41,7 +41,7 @@ Operações CRUD (Criar, Ler, Atualizar, Excluir) para gerenciar clientes.
 - **Registro de Vendas:** Registra transações de vendas, incluindo o cliente, produto, quantidade, preço unitário e valor total do pedido.
 - **Gestão de Estoque:** Atualiza automaticamente o estoque do produto após uma venda bem-sucedida.
 
-## 🚀 Instalação
+## Instalação
 
 #### 1. Acesse o repositório:
 
@@ -67,14 +67,14 @@ cd path/pos-system-challenge
 docker-compose up -d
 ```
 
-Esse comando irá criar os seguintes containers:
+Esse comando irá executar todos os comando necessários para o funcionamento da aplicação e irá criar os seguintes containers:
 
 - db-pos-system, que irá implementar o banco de dados MySQL da aplicação.
 - backend-pos-system, que irá iniciar o servidor da aplicação.
 
 As migrations e seeders do banco de dados serão implementadas automaticamente.
 
-## ☕ Uso
+## Uso
 
 #### 1. Inicie um client de sua preferência, como por exemplo o Insomnia;
 
